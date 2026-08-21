@@ -8,21 +8,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: echo "${{ github.event_name }} event automatically triggered this job."
+      - name: Show event
+        run: echo "${{ github.event_name }} event automatically triggered this job."
 
-      - run: echo "A ${{ runner.os }} server hosted by GitHub has this job running."
+      - name: Show runner
+        run: echo "A ${{ runner.os }} server hosted by GitHub has this job running."
 
-      - run: echo "Details of your repository: repo-name: ${{ github.repository }} and branch name is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Show repository details
+        run: |
+          echo "Details of your repository:"
+          echo "Repo name: ${{ github.repository }}"
+          echo "Branch/ref: ${{ github.ref }}"
 
       - name: Checking out the repository's code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - run: echo "The runner has cloned your ${{ github.repository }} repository."
+      - name: Confirm checkout
+        run: echo "The runner has cloned your ${{ github.repository }} repository."
 
-      - run: echo "The workflow can now test your code with the runner."
+      - name: Test runner
+        run: echo "The workflow can now test your code with the runner."
 
       - name: List files in the repository
         run: |
-          ls "${{ github.workspace }}"
+          ls -la "${{ github.workspace }}"
 
-      - run: echo "This job has a ${{ job.status }} status."
+      - name: Show job status
+        run: echo "This job has a ${{ job.status }} status."
