@@ -1,0 +1,37 @@
+name: Demo GitHub Action Workflow
+
+on:
+  push:
+
+jobs:
+  Discover-GitHub-Actions-Workflows:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show event
+        run: echo "${{ github.event_name }} event automatically triggered this job."
+
+      - name: Show runner
+        run: echo "A ${{ runner.os }} server hosted by GitHub has this job running."
+
+      - name: Show repository details
+        run: |
+          echo "Details of your repository:"
+          echo "Repo name: ${{ github.repository }}"
+          echo "Branch/ref: ${{ github.ref }}"
+
+      - name: Checking out the repository's code
+        uses: actions/checkout@v4
+
+      - name: Confirm checkout
+        run: echo "The runner has cloned your ${{ github.repository }} repository."
+
+      - name: Test runner
+        run: echo "The workflow can now test your code with the runner."
+
+      - name: List files in the repository
+        run: |
+          ls -la "${{ github.workspace }}"
+
+      - name: Show job status
+        run: echo "This job has a ${{ job.status }} status."

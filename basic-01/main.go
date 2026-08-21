@@ -7,4 +7,6 @@ func main() {
 	var age int = 30
 
 	fmt.Println(age)
+	fmt.Println(21 + age)
+	fmt.Println("Sarthak workflow")
 }
